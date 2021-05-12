@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find tianbot_mini)/maps/map" output="log"/>
+</launch>

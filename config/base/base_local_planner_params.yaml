@@ -1,0 +1,43 @@
+controller_frequency: 3.0 # movebase以 3Hz 的频率发布 运动控制命令(cmd_vel)
+planner_frequency: 0.125 # movebase 以 0.125Hz 规划一次新路径
+
+recovery_behavior_enabled: true # 启用 自救行为
+clearing_rotation_allowed: true # 启用 自动清理障碍标记
+
+TrajectoryPlannerROS:
+   max_vel_x: 0.25 # 最大x轴线速度 运动速度 0.25sm/s
+   min_vel_x: 0.085 # 最小x轴线速度 运动速度 0.085m/s
+   max_vel_y: 0.0  # zero for a differential drive robot
+   min_vel_y: 0.0
+   max_vel_theta: 1.5
+   min_vel_theta: -1.5
+   min_in_place_vel_theta: 0.6
+   escape_vel: -0.125
+   acc_lim_x: 2.0
+   acc_lim_y: 0.0  # zero for a differential drive robot
+   acc_lim_theta: 3.0
+
+   holonomic_robot: false
+   yaw_goal_tolerance: 0.70 # about -- degrees 目标位置的角度容忍度
+   xy_goal_tolerance: 0.085  # 8.5 cm 目标位置的位置容忍度
+   latch_xy_goal_tolerance: false
+   path_distance_bias: 0.55
+   goal_distance_bias: 0.65
+   meter_scoring: true
+
+   heading_lookahead: 0.325
+   heading_scoring: false
+   heading_scoring_timestep: 0.8
+   occdist_scale: 0.05
+   oscillation_reset_dist: 0.05
+   publish_cost_grid_pc: false
+   prune_plan: true
+
+   sim_time: 1.75 # 预仿真时间，计算多长时间内的情况，影响连贯性
+   sim_granularity: 0.025
+   angular_sim_granularity: 0.025
+   vx_samples: 40 # 线速度 采样点数量
+   vy_samples: 0  # zero for a differential drive robot
+   vtheta_samples: 80 # 角速度 采样点数量
+   dwa: true
+   simple_attractor: false

@@ -1,0 +1,14 @@
+<launch>
+
+  <!-- 迷你机器人，基础参数 -->
+  <arg name="robot_name" default="tianbot_mini" />
+
+  <!-- 迷你机器人，通信驱动 -->
+  <node pkg="rosserial_server" type="socket_node" name="tianbot_mini" output="log"/>
+
+  <!-- 迷你机器人模型 -->
+  <include file="$(find tianbot_mini_description)/launch/model.launch.xml">
+    <arg name="robot_name" value="$(arg robot_name)" />
+  </include>
+
+</launch>
