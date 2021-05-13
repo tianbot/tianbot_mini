@@ -13,7 +13,7 @@
   <arg name="odom_frame_id" default="$(arg robot_name)/odom" />
 
   <!-- TF坐标变换，指定雷达与机器人旋转中心的位置关系 -->
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.027 0 0.0705 0 0 0 $(arg base_frame_id) $(arg laser_frame_id) 100" />
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.027 0 0.0705 0 0 0 $(arg base_frame_id) $(arg laser_frame_id) 50" />
 
   <!-- MoveBase路径规矩算法，控制机器人进行导航 -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
@@ -38,7 +38,7 @@
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" clear_params="true">
     <param name="odom_frame" value="$(arg odom_frame_id)" />
     <param name="base_frame" value="$(arg base_frame_id)" />
-    <param name="map_update_interval" value="1.0" />
+    <param name="map_update_interval" value="0.80" />
     <!-- Set maxUrange < actual maximum range of the Laser -->
     <param name="maxRange" value="3.25" />
     <param name="maxUrange" value="3.0" />

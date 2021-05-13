@@ -48,7 +48,7 @@
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen" clear_params="true">
     <param name="odom_frame" value="$(arg odom_frame_id)" />
     <param name="base_frame" value="$(arg base_frame_id)" />
-    <param name="map_update_interval" value="1.0" />
+    <param name="map_update_interval" value="0.8" />
     <!-- Set maxUrange < actual maximum range of the Laser -->
     <param name="maxRange" value="3.25" />
     <param name="maxUrange" value="3.0" />

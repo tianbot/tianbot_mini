@@ -21,7 +21,7 @@
   <arg name="odom_frame_id" default="$(arg robot_name)/odom" />
 
   <!-- TF坐标变换，指定雷达与机器人旋转中心的位置关系 -->
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.027 0 0.0705 0 0 0 $(arg base_frame_id) $(arg laser_frame_id) 100" />
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.027 0 0.0705 0 0 0 $(arg base_frame_id) $(arg laser_frame_id) 50" />
 
   <!-- MoveBase路径规矩算法(TEB规划器)，控制机器人进行导航 -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" clear_params="true">
