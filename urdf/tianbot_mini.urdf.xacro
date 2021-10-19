@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <link  name="base_link"/>
+ 
+
+  <link name="chassis">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+   <joint name="base_link_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="chassis" />
+  </joint>
+
+<link name="chassis_inertia">
+  <inertial>
+      <origin
+        xyz="0.024853469830173 2.97664242950762E-05 0.0250543140056088"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="6.9553958488565E-04"
+        ixy="-1.99945013904458E-08"
+        ixz="1.43938674591944E-05"
+        iyy="7.30544716315262E-04"
+        iyz="4.63385578966379E-09"
+        izz="0.0011040368246549" />
+    </inertial>
+    </link>
+
+    <joint name="chassis_inertia_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="chassis" />
+    <child link="chassis_inertia" />
+    </joint>
+
+
+  <link
+    name="left_wheel_link">
+    <inertial>
+      <origin
+        xyz="2.32078430192871E-05 0.00382855825620403 8.27449320089935E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.0141097430532149" />
+      <inertia
+        ixx="2.40384090487514E-05"
+        ixy="9.21491839222917E-12"
+        ixz="1.16650464760408E-11"
+        iyy="4.21578178329362E-05"
+        iyz="2.56744598636029E-11"
+        izz="2.40355678533584E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-3.1502E-05 0.0539 0"
+      rpy="0 0 0" />
+    <parent
+      link="chassis" />
+    <child
+      link="left_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <link
+    name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="2.32417232655761E-05 0.00382871766815113 7.46876650276063E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.0141106473315115" />
+      <inertia
+        ixx="2.40403731664504E-05"
+        ixy="1.93558318570861E-11"
+        ixz="-1.9701375781678E-11"
+        iyy="4.21599888385316E-05"
+        iyz="3.15208827782047E-12"
+        izz="2.4035775665164E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint
+    name="right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="3.1502E-05 -0.0539 0"
+      rpy="0 0 0" />
+    <parent
+      link="chassis" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  
+  
+  
+  <link
+    name="caster_wheel_link">
+    <inertial>
+      <origin
+        xyz="-0.00165835255684716 -0.00180060938974309 -0.0149394143750132"
+        rpy="0 0 0" />
+      <mass
+        value="0.05" />
+      <inertia
+        ixx="2.16626931623885E-05"
+        ixy="3.83541263603009E-07"
+        ixz="3.99373843702272E-08"
+        iyy="2.24557422869881E-05"
+        iyz="4.38381740576403E-08"
+        izz="3.40995008598664E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/caster_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/caster_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="caster_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.0669 0 0.013198"
+      rpy="0 0 0" />
+    <parent
+      link="chassis" />
+    <child
+      link="caster_wheel_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+  <link
+    name="casterball_link">
+    <inertial>
+      <origin
+        xyz="7.28361031825109E-06 -6.78424244432776E-06 -2.7116678312511E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="6.55220382676576E-06"
+        ixy="-4.99341078806011E-09"
+        ixz="-1.46699518378004E-11"
+        iyy="6.54388662358904E-06"
+        iyz="-1.76446657793141E-11"
+        izz="6.4985337868168E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/casterball_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.556862745098039 0.556862745098039 0.556862745098039 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/casterball_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="casterball_joint"
+    type="continuous">
+    <origin
+      xyz="0.0067192 0.0074065 -0.0223"
+      rpy="0 0 0" />
+    <parent
+      link="caster_wheel_link" />
+    <child
+      link="casterball_link" />
+    <axis
+      xyz="0.73589 -0.6771 0" />
+  </joint>
+  <link
+    name="lidar_Link">
+    <inertial>
+      <origin
+        xyz="0.00488456324855697 0.0002034775126721 -0.00678164110191608"
+        rpy="0 0 0" />
+      <mass
+        value="0.1" />
+      <inertia
+        ixx="2.13845745300745E-04"
+        ixy="6.16395629669164E-08"
+        ixz="7.73241537389749E-06"
+        iyy="4.15001411959707E-04"
+        iyz="4.01928352675467E-09"
+        izz="4.77132234847934E-04" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/lidar_Link.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://tianbot_mini/meshes/lidar_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="0.026633 -0.00020608 0.067612"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+<gazebo reference="chassis"> 
+     <material>Gazebo/Red </material>
+    </gazebo>
+ <gazebo reference="right_wheel_link"> 
+     <material>Gazebo/Black </material>
+    </gazebo>
+ <gazebo reference="left_wheel_link"> 
+     <material>Gazebo/Black </material>
+    </gazebo>
+ <gazebo reference="caster_wheel_link"> 
+     <material>Gazebo/Blue </material>
+    </gazebo>
+
+
+ <!-- Transmission is important to link the joints and the controller -->
+ <xacro:macro name="wheel" params="prefix reflect">
+        <transmission name="${prefix}_wheel_joint_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}_wheel_joint" >
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}_wheel_joint_motor">
+                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+                <mechanicalReduction>1</mechanicalReduction>
+            </actuator>
+        </transmission>
+    </xacro:macro>
+
+ 
+<!-- controller -->
+        <gazebo>
+            <plugin name="differential_drive_controller" 
+                    filename="libgazebo_ros_diff_drive.so">
+                <rosDebugLevel>Error</rosDebugLevel>
+                <publishWheelTF>true</publishWheelTF>
+                <robotNamespace>/</robotNamespace>
+                <publishTf>1</publishTf>
+                <publishOdomTF>true</publishOdomTF>
+                <publishWheelJointState>true</publishWheelJointState>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50.0</updateRate>
+                <legacyMode>true</legacyMode>
+                <leftJoint>left_wheel_joint</leftJoint>
+                <rightJoint>right_wheel_joint</rightJoint>
+                <wheelSeparation>0.1</wheelSeparation>
+                <wheelDiameter>0.043</wheelDiameter>
+                <broadcastTF>1</broadcastTF>
+                <wheelTorque>30</wheelTorque>
+                <wheelAcceleration>1.8</wheelAcceleration>
+                <commandTopic>tianbot_mini/cmd_vel</commandTopic>
+                <odometryFrame>tianbot_mini/odom</odometryFrame> 
+                <odometryTopic>tianbot_mini/odom</odometryTopic> 
+                <odometrySource>world</odometrySource> 
+                <robotBaseFrame>tianbot_mini/base_link</robotBaseFrame>
+            </plugin>
+        </gazebo> 
+
+
+</robot>
