@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lidar">
 
         <!-- Create laser reference frame -->
- <gazebo reference="lidar_Link"> 
+ <gazebo reference="${tf_prefix}laser"> 
             <sensor type="ray" name="rplidar">
                 <pose>0 0 0 0 0 0</pose>
                 <visualize>false</visualize>
@@ -28,8 +28,9 @@
                     </noise>
                 </ray>
                 <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
-                    <topicName>/scan</topicName>
-                    <frameName>lidar_Link</frameName>
+                    <robotNamespace>/</robotNamespace>
+                    <topicName>${tf_prefix}scan</topicName>
+                    <frameName>${tf_prefix}laser</frameName>
                 </plugin>
             </sensor>
         </gazebo>

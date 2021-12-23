@@ -1,26 +1,10 @@
 <launch>
-  <arg
-    name="model" />
-  <arg
-    name="gui"
-    default="False" />
-  <param
-    name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find tianbot_mini)/urdf/tianbot_mini_run.urdf.xacro'" />
-  <param
-    name="use_gui"
-    value="$(arg gui)" />
-  <node
-    name="joint_state_publisher"
-    pkg="joint_state_publisher"
-    type="joint_state_publisher" />
-  <node
-    name="robot_state_publisher"
-    pkg="robot_state_publisher"
-    type="robot_state_publisher" />
-  <node
-    name="rviz"
-    pkg="rviz"
-    type="rviz"
-    args="-d $(find tianbot_mini)/urdf.rviz" />
+  <arg name="robot_name" default="tianbot_mini" />
+
+  <!-- 迷你机器人模型 -->
+  <include file="$(find tianbot_mini)/launch/includes/model.launch.xml">
+    <arg name="robot_name" value="$(arg robot_name)" />
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tianbot_mini)/urdf.rviz -f $(arg robot_name)/base_link" />
 </launch>

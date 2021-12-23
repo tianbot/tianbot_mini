@@ -4,6 +4,9 @@ planner_frequency: 0.1 # movebase 以 0.1Hz 规划一次新路径
 recovery_behavior_enabled: true # 启用 自救行为
 clearing_rotation_allowed: true # 启用 自动清理障碍标记
 
+NavfnROS: 
+   allow_unknown: false
+
 TrajectoryPlannerROS:
    max_vel_x: 0.3 # 最大x轴线速度 运动速度 0.3m/s
    min_vel_x: 0.085 # 最小x轴线速度 运动速度 0.085m/s

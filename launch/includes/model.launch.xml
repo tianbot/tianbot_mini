@@ -1,23 +1,14 @@
 <launch>
 
   <!-- 迷你机器人，基础参数 -->
-  <arg name="robot_name" default="tianbot_mini" />
+  <arg name="robot_name" />
 
-  <!-- TF坐标变换，基础参数 -->
-  <arg name="base_frame_id" default="$(arg robot_name)/base_link" />
+  <arg name="model" />
+  <arg name="gui" default="False" />
 
-  <node pkg="tf" type="static_transform_publisher" name="tbm_base_link_to_urdf_base_link" args="0 0 0 0 0 0 $(arg base_frame_id) base_link 100" />
-
-  <arg
-    name="model" />
-  <arg
-    name="gui"
-    default="False" />
   <!-- 加载机器人模型描述参数 -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tianbot_mini)/urdf/tianbot_mini_run.urdf.xacro'" />
-  <param
-    name="use_gui"
-    value="$(arg gui)" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tianbot_mini)/urdf/tianbot_mini_run.urdf.xacro' prefix:=$(arg robot_name)" />
+
   <node
     name="joint_state_publisher"
     pkg="joint_state_publisher"
@@ -25,6 +16,8 @@
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
-    type="robot_state_publisher" />
+    type="robot_state_publisher" >
+      <param name="publish_frequency" type="double" value="10.0" />
+  </node>
 
 </launch>

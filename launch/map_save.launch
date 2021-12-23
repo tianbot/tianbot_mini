@@ -1,3 +1,4 @@
 <launch>
-  <node pkg="map_server" type="map_saver" name="map_saver" args="-f $(find tianbot_mini)/maps/map" output="log"/>
+  <arg name="robot_name" default="tianbot_mini" />
+  <node pkg="map_server" ns="$(arg robot_name)" type="map_saver" name="map_saver" args="-f $(find tianbot_mini)/maps/map" output="log" />
 </launch>

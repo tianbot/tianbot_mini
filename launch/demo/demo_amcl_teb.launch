@@ -1,5 +1,5 @@
 <launch>
     <include file="$(find tianbot_mini)/launch/bringup.launch" />
     <include file="$(find tianbot_mini)/launch/lidar.launch" />
-    <include file="$(find tianbot_mini)/launch/amcl_teb.launch" />
+    <include file="$(find tianbot_mini)/launch/teb/amcl_teb.launch" />
 </launch>

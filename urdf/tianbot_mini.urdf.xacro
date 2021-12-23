@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  
-  <link  name="base_link"/>
- 
 
-  <link name="chassis">
+  <link name="${tf_prefix}base_link"/>
+
+  <link name="${tf_prefix}chassis">
     <visual>
       <origin
         xyz="0 0 0"
@@ -32,11 +31,11 @@
 
    <joint name="base_link_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
-    <parent link="base_link" />
-    <child link="chassis" />
+    <parent link="${tf_prefix}base_link" />
+    <child link="${tf_prefix}chassis" />
   </joint>
 
-<link name="chassis_inertia">
+<link name="${tf_prefix}chassis_inertia">
   <inertial>
       <origin
         xyz="0.024853469830173 2.97664242950762E-05 0.0250543140056088"
@@ -55,13 +54,13 @@
 
     <joint name="chassis_inertia_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
-    <parent link="chassis" />
-    <child link="chassis_inertia" />
+    <parent link="${tf_prefix}chassis" />
+    <child link="${tf_prefix}chassis_inertia" />
     </joint>
 
 
   <link
-    name="left_wheel_link">
+    name="${tf_prefix}left_wheel_link">
     <inertial>
       <origin
         xyz="2.32078430192871E-05 0.00382855825620403 8.27449320089935E-07"
@@ -108,15 +107,15 @@
       xyz="-3.1502E-05 0.0539 0"
       rpy="0 0 0" />
     <parent
-      link="chassis" />
+      link="${tf_prefix}chassis" />
     <child
-      link="left_wheel_link" />
+      link="${tf_prefix}left_wheel_link" />
     <axis
       xyz="0 1 0" />
   </joint>
 
   <link
-    name="right_wheel_link">
+    name="${tf_prefix}right_wheel_link">
     <inertial>
       <origin
         xyz="2.32417232655761E-05 0.00382871766815113 7.46876650276063E-07"
@@ -164,9 +163,9 @@
       xyz="3.1502E-05 -0.0539 0"
       rpy="0 0 0" />
     <parent
-      link="chassis" />
+      link="${tf_prefix}chassis" />
     <child
-      link="right_wheel_link" />
+      link="${tf_prefix}right_wheel_link" />
     <axis
       xyz="0 1 0" />
   </joint>
@@ -174,7 +173,7 @@
   
   
   <link
-    name="caster_wheel_link">
+    name="${tf_prefix}caster_wheel_link">
     <inertial>
       <origin
         xyz="-0.00165835255684716 -0.00180060938974309 -0.0149394143750132"
@@ -220,14 +219,14 @@
       xyz="0.0669 0 0.013198"
       rpy="0 0 0" />
     <parent
-      link="chassis" />
+      link="${tf_prefix}chassis" />
     <child
-      link="caster_wheel_link" />
+      link="${tf_prefix}caster_wheel_link" />
     <axis
       xyz="0 0 -1" />
   </joint>
   <link
-    name="casterball_link">
+    name="${tf_prefix}casterball_link">
     <inertial>
       <origin
         xyz="7.28361031825109E-06 -6.78424244432776E-06 -2.7116678312511E-08"
@@ -273,14 +272,14 @@
       xyz="0.0067192 0.0074065 -0.0223"
       rpy="0 0 0" />
     <parent
-      link="caster_wheel_link" />
+      link="${tf_prefix}caster_wheel_link" />
     <child
-      link="casterball_link" />
+      link="${tf_prefix}casterball_link" />
     <axis
       xyz="0.73589 -0.6771 0" />
   </joint>
   <link
-    name="lidar_Link">
+    name="${tf_prefix}laser">
     <inertial>
       <origin
         xyz="0.00488456324855697 0.0002034775126721 -0.00678164110191608"
@@ -326,24 +325,32 @@
       xyz="0.026633 -0.00020608 0.067612"
       rpy="0 0 0" />
     <parent
-      link="base_link" />
+      link="${tf_prefix}base_link" />
     <child
-      link="lidar_Link" />
+      link="${tf_prefix}laser" />
     <axis
       xyz="0 0 0" />
   </joint>
 
-<gazebo reference="chassis"> 
+<gazebo reference="${tf_prefix}chassis"> 
      <material>Gazebo/Red </material>
+     <maxVel>0.0</maxVel>
+     <minDepth>0.001</minDepth>
     </gazebo>
- <gazebo reference="right_wheel_link"> 
+ <gazebo reference="${tf_prefix}right_wheel_link"> 
      <material>Gazebo/Black </material>
+     <maxVel>0.0</maxVel>
+     <minDepth>0.001</minDepth>
     </gazebo>
- <gazebo reference="left_wheel_link"> 
+ <gazebo reference="${tf_prefix}left_wheel_link"> 
      <material>Gazebo/Black </material>
+     <maxVel>0.0</maxVel>
+     <minDepth>0.001</minDepth>
     </gazebo>
- <gazebo reference="caster_wheel_link"> 
+ <gazebo reference="${tf_prefix}caster_wheel_link"> 
      <material>Gazebo/Blue </material>
+     <maxVel>0.0</maxVel>
+     <minDepth>0.001</minDepth>
     </gazebo>
 
 
@@ -371,7 +378,7 @@
                 <robotNamespace>/</robotNamespace>
                 <publishTf>1</publishTf>
                 <publishOdomTF>true</publishOdomTF>
-                <publishWheelJointState>true</publishWheelJointState>
+                <publishWheelJointState>false</publishWheelJointState>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50.0</updateRate>
                 <legacyMode>true</legacyMode>
@@ -382,11 +389,11 @@
                 <broadcastTF>1</broadcastTF>
                 <wheelTorque>30</wheelTorque>
                 <wheelAcceleration>1.8</wheelAcceleration>
-                <commandTopic>tianbot_mini/cmd_vel</commandTopic>
-                <odometryFrame>tianbot_mini/odom</odometryFrame> 
-                <odometryTopic>tianbot_mini/odom</odometryTopic> 
+                <commandTopic>${tf_prefix}cmd_vel</commandTopic>
+                <odometryFrame>${tf_prefix}odom</odometryFrame> 
+                <odometryTopic>${tf_prefix}odom</odometryTopic> 
                 <odometrySource>world</odometrySource> 
-                <robotBaseFrame>tianbot_mini/base_link</robotBaseFrame>
+                <robotBaseFrame>${tf_prefix}base_link</robotBaseFrame>
             </plugin>
         </gazebo> 
 
