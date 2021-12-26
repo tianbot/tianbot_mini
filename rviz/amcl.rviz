@@ -78,9 +78,7 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 4096
       Min Color: 0; 0; 0
-      Min Intensity: 0
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -114,6 +112,7 @@ Visualization Manager:
       Keep: 1
       Name: Odometry
       Position Tolerance: 0.10000000149011612
+      Queue Size: 10
       Shape:
         Alpha: 1
         Axes Length: 1
@@ -154,6 +153,7 @@ Visualization Manager:
         Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
+      Queue Size: 10
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
@@ -165,6 +165,7 @@ Visualization Manager:
       Color: 239; 41; 41
       Enabled: true
       Name: Polygon
+      Queue Size: 10
       Topic: move_base/global_costmap/footprint
       Unreliable: false
       Value: true
@@ -185,6 +186,7 @@ Visualization Manager:
         Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
+      Queue Size: 10
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
@@ -201,6 +203,7 @@ Visualization Manager:
       Head Length: 0.07000000029802322
       Head Radius: 0.029999999329447746
       Name: AMCL_PoseArray
+      Queue Size: 10
       Shaft Length: 0.23000000417232513
       Shaft Radius: 0.009999999776482582
       Shape: Arrow (Flat)
@@ -217,40 +220,40 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        tianbot_1/base_link:
+        tianbot_mini/base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        tianbot_1/caster_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tianbot_1/casterball_link:
+        tianbot_mini/caster_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tianbot_1/chassis:
+        tianbot_mini/casterball_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tianbot_1/chassis_inertia:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        tianbot_1/laser:
+        tianbot_mini/chassis:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tianbot_1/left_wheel_link:
+        tianbot_mini/chassis_inertia:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        tianbot_mini/laser:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        tianbot_1/right_wheel_link:
+        tianbot_mini/left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tianbot_mini/right_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -279,7 +282,7 @@ Visualization Manager:
   Global Options:
     Background Color: 0; 0; 0
     Default Light: true
-    Fixed Frame: world
+    Fixed Frame: tianbot_mini/map
     Frame Rate: 30
   Name: root
   Tools:
@@ -309,7 +312,6 @@ Visualization Manager:
       Near Clip Distance: 0.009999999776482582
       Scale: 33.38345718383789
       Target Frame: <Fixed Frame>
-      Value: TopDownOrtho (rviz)
       X: -3.543222427368164
       Y: -0.3137618601322174
     Saved: ~
@@ -319,7 +321,7 @@ Window Geometry:
   Height: 1016
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001f70000039efc0200000005fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001b500000198000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d0000039e000000c900ffffff000000010000010f00000270fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000002800000270000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a0000002eb00fffffffb0000000800540069006d00650100000000000004500000000000000000000005830000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001f70000039efc0200000005fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001b500000198000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d0000039e000000c900ffffff000000010000010f00000270fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000002800000270000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a0000004f300fffffffb0000000800540069006d006501000000000000045000000000000000000000053b0000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -328,6 +330,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1920
-  X: 0
+  Width: 1848
+  X: 72
   Y: 27

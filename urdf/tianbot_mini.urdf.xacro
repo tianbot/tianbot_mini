@@ -332,70 +332,66 @@
       xyz="0 0 0" />
   </joint>
 
-<gazebo reference="${tf_prefix}chassis"> 
-     <material>Gazebo/Red </material>
-     <maxVel>0.0</maxVel>
-     <minDepth>0.001</minDepth>
-    </gazebo>
- <gazebo reference="${tf_prefix}right_wheel_link"> 
-     <material>Gazebo/Black </material>
-     <maxVel>0.0</maxVel>
-     <minDepth>0.001</minDepth>
-    </gazebo>
- <gazebo reference="${tf_prefix}left_wheel_link"> 
-     <material>Gazebo/Black </material>
-     <maxVel>0.0</maxVel>
-     <minDepth>0.001</minDepth>
-    </gazebo>
- <gazebo reference="${tf_prefix}caster_wheel_link"> 
-     <material>Gazebo/Blue </material>
-     <maxVel>0.0</maxVel>
-     <minDepth>0.001</minDepth>
-    </gazebo>
-
-
- <!-- Transmission is important to link the joints and the controller -->
- <xacro:macro name="wheel" params="prefix reflect">
-        <transmission name="${prefix}_wheel_joint_trans">
-            <type>transmission_interface/SimpleTransmission</type>
-            <joint name="${prefix}_wheel_joint" >
-                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-            </joint>
-            <actuator name="${prefix}_wheel_joint_motor">
-                <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-                <mechanicalReduction>1</mechanicalReduction>
-            </actuator>
-        </transmission>
-    </xacro:macro>
-
+  <gazebo reference="${tf_prefix}base_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${tf_prefix}chassis"> 
+    <material>Gazebo/Grey </material>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
+  <gazebo reference="${tf_prefix}right_wheel_link"> 
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <material>Gazebo/DarkGrey</material>
+    <maxVel>0.1</maxVel>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+  <gazebo reference="${tf_prefix}left_wheel_link">
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <material>Gazebo/DarkGrey </material>
+    <maxVel>0.1</maxVel>
+    <minDepth>0.001</minDepth>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+  <gazebo reference="${tf_prefix}caster_wheel_link"> 
+    <material>Gazebo/Black </material>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+  </gazebo>
  
 <!-- controller -->
-        <gazebo>
-            <plugin name="differential_drive_controller" 
-                    filename="libgazebo_ros_diff_drive.so">
-                <rosDebugLevel>Error</rosDebugLevel>
-                <publishWheelTF>true</publishWheelTF>
-                <robotNamespace>/</robotNamespace>
-                <publishTf>1</publishTf>
-                <publishOdomTF>true</publishOdomTF>
-                <publishWheelJointState>false</publishWheelJointState>
-                <alwaysOn>true</alwaysOn>
-                <updateRate>50.0</updateRate>
-                <legacyMode>true</legacyMode>
-                <leftJoint>left_wheel_joint</leftJoint>
-                <rightJoint>right_wheel_joint</rightJoint>
-                <wheelSeparation>0.1</wheelSeparation>
-                <wheelDiameter>0.043</wheelDiameter>
-                <broadcastTF>1</broadcastTF>
-                <wheelTorque>30</wheelTorque>
-                <wheelAcceleration>1.8</wheelAcceleration>
-                <commandTopic>${tf_prefix}cmd_vel</commandTopic>
-                <odometryFrame>${tf_prefix}odom</odometryFrame> 
-                <odometryTopic>${tf_prefix}odom</odometryTopic> 
-                <odometrySource>world</odometrySource> 
-                <robotBaseFrame>${tf_prefix}base_link</robotBaseFrame>
-            </plugin>
-        </gazebo> 
+  <gazebo>
+    <plugin name="differential_drive_controller" 
+            filename="libgazebo_ros_diff_drive.so">
+      <rosDebugLevel>Error</rosDebugLevel>
+      <publishWheelTF>false</publishWheelTF>
+      <robotNamespace>/</robotNamespace>
+      <publishTf>true</publishTf>
+      <publishOdomTF>true</publishOdomTF>
+      <publishWheelJointState>false</publishWheelJointState>
+      <updateRate>50</updateRate>
+      <legacyMode>false</legacyMode>
+      <leftJoint>left_wheel_joint</leftJoint>
+      <rightJoint>right_wheel_joint</rightJoint>
+      <wheelSeparation>0.1</wheelSeparation>
+      <wheelDiameter>0.043</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>20</wheelTorque>
+      <wheelAcceleration>1.0</wheelAcceleration>
+      <commandTopic>${tf_prefix}cmd_vel</commandTopic>
+      <odometryFrame>${tf_prefix}odom</odometryFrame> 
+      <odometryTopic>${tf_prefix}odom</odometryTopic> 
+      <odometrySource>world</odometrySource> 
+      <robotBaseFrame>${tf_prefix}base_link</robotBaseFrame>
+    </plugin>
+  </gazebo> 
 
 
 </robot>
