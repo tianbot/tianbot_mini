@@ -336,7 +336,7 @@
     <material>Gazebo/Grey</material>
   </gazebo>
   <gazebo reference="${tf_prefix}chassis"> 
-    <material>Gazebo/Grey </material>
+    <material>Gazebo/LightGrey </material>
     <maxVel>0.0</maxVel>
     <minDepth>0.001</minDepth>
   </gazebo>
@@ -361,7 +361,7 @@
     <fdir1>1 0 0</fdir1>
   </gazebo>
   <gazebo reference="${tf_prefix}caster_wheel_link"> 
-    <material>Gazebo/Black </material>
+    <material>Gazebo/DarkGrey </material>
     <maxVel>0.0</maxVel>
     <minDepth>0.001</minDepth>
   </gazebo>

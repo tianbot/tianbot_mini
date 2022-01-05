@@ -44,7 +44,10 @@
 *.pyc
 
 # map file
-*.pgm
+maps/*.pgm
+maps/*.yaml
+! maps/map.pgm
+! maps/map.yaml
 
 # unused file
 imgui.ini

@@ -4,15 +4,14 @@ footprint_padding: 0.00
 footprint_inflation: 0.025 # 机器人膨胀层
 
 transform_tolerance: 2.0
-map_type: costmap
 
-always_send_full_costmap: true  #true
+always_send_full_costmap: false  #true
 
 obstacle_layer:
  enabled: true
  obstacle_range: 1.5 # 规避障碍的范围
  raytrace_range: 2.5 # 探测障碍的范围
- inflation_radius: 0.05
+ inflation_radius: 0.2
  track_unknown_space: true
  combination_method: 1
 

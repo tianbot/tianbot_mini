@@ -86,5 +86,4 @@
       <remap from="/initialpose" to="initialpose"/>
     </node>
   </group>
-
 </launch>
