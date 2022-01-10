@@ -18,8 +18,6 @@
     </include>
 
     <!-- 加载机器人模型描述参数 -->
- 
-
     <group ns="$(arg robot_name)">
         <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find tianbot_mini)/urdf/tianbot_mini_run.urdf.xacro' prefix:=$(arg robot_name)" />
         
