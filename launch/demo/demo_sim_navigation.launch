@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find tianbot_mini)/launch/simulation.launch" />
+    <include file="$(find tianbot_mini)/launch/amcl.launch" />
+</launch>

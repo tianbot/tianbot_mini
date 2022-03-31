@@ -17,9 +17,15 @@
   <arg name="base_frame_id" default="$(arg robot_name)/base_link" />
   <arg name="odom_frame_id" default="$(arg robot_name)/odom" />
 
+  <!-- map file -->
+  <arg name="map" default="$(find tianbot_mini)/maps/map.yaml" />
+
+  <!-- Rviz -->
+  <arg name="use_rviz" default="true" />
+
   <group ns="$(arg robot_name)">
     <!-- Map服务器，加载*.yaml地图 -->
-    <node pkg="map_server" type="map_server" name="map_server" args="$(find tianbot_mini)/maps/map.yaml">
+    <node pkg="map_server" type="map_server" name="map_server" args="$(arg map)">
       <param name="frame_id" value="$(arg robot_name)/map" />
     </node>
 
@@ -86,7 +92,7 @@
     </node>
 
     <!-- RVIZ可视化调试工具 -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tianbot_mini)/rviz/amcl.rviz -f $(arg global_frame_id)" >
+    <node if="$(arg use_rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find tianbot_mini)/rviz/amcl.rviz -f $(arg global_frame_id)" >
       <remap from="/move_base_simple/goal" to="move_base_simple/goal"/>
       <remap from="/initialpose" to="initialpose"/>
     </node>

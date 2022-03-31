@@ -6,10 +6,11 @@
     <arg name="gui" default="true"/>
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/>
+    <arg name="world_name" default="$(find tianbot_mini)/worlds/room_mini.world" />
 
     <!-- 运行gazebo仿真环境 -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find tianbot_mini)/worlds/room_mini.world" />    
+        <arg name="world_name" value="$(arg world_name)" />
         <arg name="debug" value="$(arg debug)" />
         <arg name="gui" value="$(arg gui)" />
         <arg name="paused" value="$(arg paused)"/>
