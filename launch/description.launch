@@ -1,0 +1,11 @@
+<launch>
+  <!-- 迷你机器人，基础参数 -->
+  <arg name="robot_name" default="tianbot_mini" />
+
+  <!-- 迷你机器人模型 -->
+  <include ns="$(arg robot_name)" file="$(find tianbot_mini)/launch/includes/model.launch.xml">
+    <arg name="robot_name" value="$(arg robot_name)" />
+  </include>
+
+</launch>
+

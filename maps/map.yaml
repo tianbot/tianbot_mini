@@ -1,4 +1,4 @@
-image: /home/tianbot/tianbot_mini_ws/src/tianbot_mini/maps/map.pgm
+image: map.pgm
 resolution: 0.025000
 origin: [-13.000000, -12.200000, 0.000000]
 negate: 0
