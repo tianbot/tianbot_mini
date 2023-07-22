@@ -1,0 +1,59 @@
+<launch>
+
+  <!-- 迷你机器人，基础参数 -->
+  <arg name="robot_name" default="tianbot_mini" />
+
+  <!-- 迷你机器人，通信驱动 -->
+  <arg name="port" default="9090" />
+  <arg name="addr" default="0.0.0.0" />
+
+  <arg name="retry_startup_delay" default="5" />
+
+  <arg name="fragment_timeout" default="600" />
+  <arg name="delay_between_messages" default="0" />
+  <arg name="max_message_size" default="None" />
+  <arg name="unregister_timeout" default="10" />
+  <arg name="websocket_external_port" default="None" />
+
+  <arg name="use_compression" default="false" />
+
+  <arg name="authenticate" default="false" />
+
+  <arg name="websocket_ping_interval" default="0" />
+  <arg name="websocket_ping_timeout" default="30" />
+  <arg name="websocket_null_origin" default="true" />
+
+  <arg name="topics_glob" default="[*]" />
+  <arg name="services_glob" default="[*]" />
+  <arg name="params_glob" default="[*]" />
+  <arg name="bson_only_mode" default="false" />
+
+    <node name="tianbot_manager" pkg="rosbridge_server" type="rosbridge_websocket" output="screen">
+      <param name="authenticate" value="$(arg authenticate)" />
+      <param name="port" value="$(arg port)"/>
+      <param name="address" value="$(arg addr)"/>
+      <param name="retry_startup_delay" value="$(arg retry_startup_delay)"/>
+      <param name="fragment_timeout" value="$(arg fragment_timeout)"/>
+      <param name="delay_between_messages" value="$(arg delay_between_messages)"/>
+      <param name="max_message_size" value="$(arg max_message_size)"/>
+      <param name="unregister_timeout" value="$(arg unregister_timeout)"/>
+      <param name="use_compression" value="$(arg use_compression)"/>
+
+      <param name="websocket_ping_interval" value="$(arg websocket_ping_interval)" />
+      <param name="websocket_ping_timeout" value="$(arg websocket_ping_timeout)" />
+      <param name="websocket_external_port" value="$(arg websocket_external_port)" />
+
+      <param name="topics_glob" value="$(arg topics_glob)"/>
+      <param name="services_glob" value="$(arg services_glob)"/>
+      <param name="params_glob" value="$(arg params_glob)"/>
+
+      <param name="bson_only_mode" value="$(arg bson_only_mode)"/>
+    </node>
+
+
+  <!-- 迷你机器人模型 -->
+  <include ns="$(arg robot_name)" file="$(find tianbot_mini)/launch/includes/model.launch.xml">
+    <arg name="robot_name" value="$(arg robot_name)" />
+  </include>
+
+</launch>
